@@ -12,16 +12,64 @@
   class FileInput
  
     defaults:
-      paramA: 'foo'
+      label: 'Обзор...'
       paramB: 'bar'
  
     constructor: (el, options) ->
       @options = $.extend({}, @defaults, options)
-      @$el = $(el)
+      @input = $(el)
+      @container = $("<span class='file-input'></span>")
+      @button = $("<button class='file-input__button'>#{@options.label}</button>")
+      @input.wrap @container
+      @input.before @button
+      @file_api = ( window.File && window.FileReader && window.FileList && window.Blob ) ? true : false;
+      do @addCss
+      @button.focus =>
+        @input.focus()
+      @input
+        .add @button
+        .focus =>
+          @container.addClass "focus"
+        .blur =>
+          @container.removeClass "focus"
+      @button.click =>
+        @input.click()
+      @input.change( =>
+        file_name = undefined
+        if @file_api and @input[0].files[0]
+          file_name = @input[0].files[0].name
+        else
+          file_name = @input.val().replace('C:\\fakepath\\', '')
+        if !file_name.length
+          return
+        @button.text file_name
+        return
+      ).change()
+
+
+    addCss: ->
+      @container.css {
+        display: "block"
+        position: "relative"
+        overflow: "hidden"
+      }
+      @input.css {
+        position: "absolute"
+        left: "0"
+        right: "0"
+        width: "100%"
+        height: "100%"
+        transform: "scale(20)"
+        letterSpacing: "10em"
+        "-ms-transform": "scale(20)"
+        opacity: "0"
+        cursor: "pointer"
+      }
+
  
     # Additional plugin methods go here
     myMethod: (echo) ->
-      @$el.html(@options.paramA + ': ' + echo)
+
  
   # Define the plugin
   $.fn.extend fileinput: (option, args...) ->
