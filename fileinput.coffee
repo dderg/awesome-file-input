@@ -22,7 +22,23 @@
       @input.wrap @container
       @input.before @button
       @file_api = ( window.File && window.FileReader && window.FileList && window.Blob ) ? true : false;
-      do @addCss
+      @container.css {
+        display: "block"
+        position: "relative"
+        overflow: "hidden"
+      }
+      @input.css {
+        position: "absolute"
+        left: "0"
+        right: "0"
+        width: "100%"
+        height: "100%"
+        transform: "scale(20)"
+        letterSpacing: "10em"
+        "-ms-transform": "scale(20)"
+        opacity: "0"
+        cursor: "pointer"
+      }
       @button.focus =>
         @input.focus()
       @input
@@ -46,24 +62,7 @@
       ).change()
 
 
-    addCss: ->
-      @container.css {
-        display: "block"
-        position: "relative"
-        overflow: "hidden"
-      }
-      @input.css {
-        position: "absolute"
-        left: "0"
-        right: "0"
-        width: "100%"
-        height: "100%"
-        transform: "scale(20)"
-        letterSpacing: "10em"
-        "-ms-transform": "scale(20)"
-        opacity: "0"
-        cursor: "pointer"
-      }
+
 
  
     # Additional plugin methods go here

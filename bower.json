@@ -1,0 +1,24 @@
+{
+  "name": "awesome-file-input",
+  "version": "0.0.1",
+  "homepage": "https://github.com/prog666/awesome-file-input",
+  "authors": [
+    "prog666 <gnomdan@yandex.ru>"
+  ],
+  "description": "jquery file input styling plugin",
+  "main": "fileinput.js",
+  "keywords": [
+    "fileinput",
+    "file",
+    "input",
+    "jquery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
