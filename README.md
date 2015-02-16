@@ -4,6 +4,7 @@ input type file styling plugin
 ## Usage
 $("input[type=file]").fileinput(opts)
 
-## options {
+## options 
+opts = {
   label: "browse..."
 }

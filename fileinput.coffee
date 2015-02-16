@@ -12,8 +12,7 @@
   class FileInput
  
     defaults:
-      label: 'Обзор...'
-      paramB: 'bar'
+      label: 'browse... '
  
     constructor: (el, options) ->
       @options = $.extend({}, @defaults, options)
